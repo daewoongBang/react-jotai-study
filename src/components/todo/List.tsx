@@ -1,9 +1,9 @@
 import { useAtomValue } from 'jotai';
-import { toDosAtom } from 'state/todo';
+import { filteredToDos } from 'state/todo';
 import ToDoItem from './Item';
 
 const ToDoList = () => {
-  const toDos = useAtomValue(toDosAtom);
+  const toDos = useAtomValue(filteredToDos);
 
   return (
     <div>
