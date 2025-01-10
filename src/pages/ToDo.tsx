@@ -1,4 +1,4 @@
-import ToDoFilter from 'components/todo/filter';
+import ToDoFilter from 'components/todo/Filter';
 import ToDoInput from 'components/todo/Input';
 import ToDoList from 'components/todo/List';
 

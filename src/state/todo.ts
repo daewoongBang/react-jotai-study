@@ -1,6 +1,12 @@
 import { atom } from 'jotai';
 
-export type ToDoFilterType = 'all' | 'completed' | 'incompleted';
+export const FILTER = {
+  ALL: 'ALL',
+  COMPLETED: 'COMPLETED',
+  INCOMPLETED: 'INCOMPLETED',
+};
+
+export type ToDoFilterType = keyof typeof FILTER;
 
 export interface IToDo {
   id: number;
@@ -8,7 +14,7 @@ export interface IToDo {
   completed: boolean;
 }
 
-export const filterType = atom<ToDoFilterType>('all');
+export const filterType = atom<ToDoFilterType>('ALL');
 
 export const toDosAtom = atom<IToDo[]>([]);
 
@@ -16,9 +22,9 @@ export const filteredToDos = atom<IToDo[]>((get) => {
   const selectedFilterType = get(filterType);
 
   return get(toDosAtom).filter((todos) =>
-    selectedFilterType === 'completed'
+    selectedFilterType === 'COMPLETED'
       ? todos.completed
-      : selectedFilterType === 'incompleted'
+      : selectedFilterType === 'INCOMPLETED'
       ? !todos.completed
       : todos
   );

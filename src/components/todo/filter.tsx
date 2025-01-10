@@ -1,5 +1,6 @@
 import { useSetAtom } from 'jotai';
-import { filterType, ToDoFilterType } from 'state/todo';
+import { Fragment } from 'react';
+import { FILTER, filterType, ToDoFilterType } from 'state/todo';
 
 const ToDoFilter = () => {
   const setFilterType = useSetAtom(filterType);
@@ -12,33 +13,19 @@ const ToDoFilter = () => {
 
   return (
     <div>
-      <input
-        type='radio'
-        name='todo_filter'
-        id='filter_all'
-        value='all'
-        defaultChecked
-        onChange={onChangeFilter}
-      />
-      <label htmlFor='filter_all'>All</label>
-
-      <input
-        type='radio'
-        name='todo_filter'
-        id='filter_completed'
-        value='completed'
-        onChange={onChangeFilter}
-      />
-      <label htmlFor='filter_completed'>Completed</label>
-
-      <input
-        type='radio'
-        name='todo_filter'
-        id='filter_incompleted'
-        value='incompleted'
-        onChange={onChangeFilter}
-      />
-      <label htmlFor='filter_incompleted'>Incompleted</label>
+      {Object.keys(FILTER).map((option, index) => (
+        <Fragment key={`${option}-${index}`}>
+          <input
+            type='radio'
+            name='todo_filter'
+            id={`filter_${option}`}
+            value={option}
+            defaultChecked={option === FILTER.ALL}
+            onChange={onChangeFilter}
+          />
+          <label htmlFor={`filter_${option}`}>{option}</label>
+        </Fragment>
+      ))}
     </div>
   );
 };
