@@ -1,6 +1,8 @@
+import Input from 'components/common/Input';
 import { useSetAtom } from 'jotai';
 import { useForm } from 'react-hook-form';
 import { toDosAtom } from 'state/todo';
+import styled from 'styled-components';
 
 interface IForm {
   text: string;
@@ -25,16 +27,22 @@ const ToDoInput = () => {
     setValue('text', '');
   });
 
+  const Wrapper = styled.div`
+    margin: 20px 0;
+  `;
+
   return (
-    <div>
+    <Wrapper>
       <form onSubmit={onSubmit}>
-        <input
+        <Input
+          name={'text'}
+          register={register}
+          rules={{ required: 'required!' }}
           placeholder='What are you going to do today?'
-          {...register('text', { required: 'required' })}
+          errorMessage={errors.text?.message}
         />
-        <div>{errors.text?.message || ''}</div>
       </form>
-    </div>
+    </Wrapper>
   );
 };
 

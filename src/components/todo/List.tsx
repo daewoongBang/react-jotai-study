@@ -1,12 +1,20 @@
 import { useAtomValue } from 'jotai';
 import { filteredToDos } from 'state/todo';
 import ToDoItem from './Item';
+import styled from 'styled-components';
 
 const ToDoList = () => {
   const toDos = useAtomValue(filteredToDos);
 
+  const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+  `;
+
   return (
-    <div>
+    <Wrapper>
       {toDos.map((item) => (
         <ToDoItem
           key={`todo-${item.id}`}
@@ -15,7 +23,7 @@ const ToDoList = () => {
           completed={item.completed}
         />
       ))}
-    </div>
+    </Wrapper>
   );
 };
 
