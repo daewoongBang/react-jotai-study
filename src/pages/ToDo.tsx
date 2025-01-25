@@ -3,7 +3,7 @@ import ToDoInput from 'components/todo/Input';
 import ToDoList from 'components/todo/List';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Container = styled.div`
   text-align: center;
 
   > h1 {
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 const ToDoPage = () => {
   return (
-    <Wrapper>
+    <Container>
       <h1>To Do List</h1>
 
       <ToDoFilter />
@@ -23,7 +23,7 @@ const ToDoPage = () => {
       <ToDoInput />
 
       <ToDoList />
-    </Wrapper>
+    </Container>
   );
 };
 

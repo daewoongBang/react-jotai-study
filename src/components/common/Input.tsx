@@ -10,6 +10,17 @@ interface IInput {
   [key: string]: any;
 }
 
+const StyledInput = styled.input`
+  width: 100%;
+  box-sizing: border-box;
+`;
+
+const ErrorText = styled.span`
+  color: red;
+  margin: 5px 0;
+  display: block;
+`;
+
 const Input = ({
   name,
   rules,
@@ -18,17 +29,6 @@ const Input = ({
   register,
   ...rest
 }: IInput) => {
-  const StyledInput = styled.input`
-    width: 100%;
-    box-sizing: border-box;
-  `;
-
-  const ErrorText = styled.span`
-    color: red;
-    margin: 5px 0;
-    display: block;
-  `;
-
   return (
     <div>
       <StyledInput

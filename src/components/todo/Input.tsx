@@ -8,6 +8,10 @@ interface IForm {
   text: string;
 }
 
+const Wrapper = styled.div`
+  margin: 20px 0;
+`;
+
 const ToDoInput = () => {
   const setToDos = useSetAtom(toDosAtom);
 
@@ -26,10 +30,6 @@ const ToDoInput = () => {
 
     setValue('text', '');
   });
-
-  const Wrapper = styled.div`
-    margin: 20px 0;
-  `;
 
   return (
     <Wrapper>

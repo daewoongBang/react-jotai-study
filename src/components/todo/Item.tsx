@@ -2,6 +2,22 @@ import { useSetAtom } from 'jotai';
 import { IToDo, toDosAtom } from 'state/todo';
 import styled from 'styled-components';
 
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  > button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }
+`;
+
+const Label = styled.label<{ $isCompleted: boolean }>`
+  color: ${(props) => (props.$isCompleted ? 'gray' : 'inherit')};
+  text-decoration: ${(props) => (props.$isCompleted ? 'line-through' : 'none')};
+`;
+
 const ToDoItem = ({ id, text, completed }: IToDo) => {
   const setToDos = useSetAtom(toDosAtom);
 
@@ -17,19 +33,8 @@ const ToDoItem = ({ id, text, completed }: IToDo) => {
     setToDos((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const Wrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-
-    > button {
-      border: none;
-      background-color: white;
-      cursor: pointer;
-    }
-  `;
-
   return (
-    <Wrapper>
+    <Container>
       <div>
         <input
           type='checkbox'
@@ -38,13 +43,15 @@ const ToDoItem = ({ id, text, completed }: IToDo) => {
           onChange={toggleCompleted}
         />
 
-        <label htmlFor={`check-${id}`}>{text}</label>
+        <Label $isCompleted={completed} htmlFor={`check-${id}`}>
+          {text}
+        </Label>
       </div>
 
       <button type='button' onClick={removeItem}>
         x
       </button>
-    </Wrapper>
+    </Container>
   );
 };
 
